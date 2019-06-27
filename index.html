@@ -298,7 +298,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yirank.github.io/2019/06/26/first-post/">
+    <link itemprop="mainEntityOfPage" href="http://yirank.github.io/2019/06/26/Note of Deploying Github Page with Hexo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yiran.K">
@@ -318,7 +318,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/26/first-post/" class="post-title-link" itemprop="url">first-post</a>
+                <a href="/2019/06/26/Note of Deploying Github Page with Hexo/" class="post-title-link" itemprop="url">Note of Deploying Github Page with Hexo</a>
               
             
           </h1>
@@ -346,6 +346,22 @@
               <time title="Created: 2019-06-26 21:54:43" itemprop="dateCreated datePublished" datetime="2019-06-26T21:54:43-07:00">2019-06-26</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-06-27 00:08:04" itemprop="dateModified" datetime="2019-06-27T00:08:04-07:00">2019-06-27</time>
+              
             
           </span>
 
@@ -380,7 +396,61 @@
       
         
           
-            
+            <h3 id="Step"><a href="#Step" class="headerlink" title="Step"></a>Step</h3><ol>
+<li><p>Install hexo</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli  </span><br><span class="line">$ hexo -v</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Create hexo directory</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init yirank.github.io</span><br><span class="line">$ cd yirank.github.io`  </span><br><span class="line">$ npm install</span><br><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Modify config</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi _config.yml</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">    repo:</span> <span class="attr">https://github.com/YiranK/yirank.github.io.git</span></span><br></pre></td></tr></table></figure>
+
+<p>Notice: need to modify the local git user name and email, in order to avoid conflict with git in other directories:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cd .deploy_git</span><br><span class="line">$ git config user.name &quot;yirank&quot;</span><br><span class="line">$ git config user.email &quot;$email&quot;</span><br><span class="line">$ cd ..</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>(Optional) Change theme</p>
+<ul>
+<li><p>Follow the guide on theme <a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">NexT</a></p>
+</li>
+<li><p>Modify <code>_config.yml</code>:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Modify the <strong>theme configuration</strong> in <code>./theme/next/_config.yml</code></p>
+</li>
+</ul>
+</li>
+<li><p>Create new page and edit</p>
+<ul>
+<li><p>Create new page:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new &quot;first_post&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Edit <code>first_post.md</code> with <code>Atom</code> and <code>ctrl+shfit+m</code> to preview</p>
+</li>
+</ul>
+</li>
+<li><p>Run and deploy Hexo</p>
+<ul>
+<li><p>Run server</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Open another command window and</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ol>
+<li><a href="https://gist.github.com/btfak/18938572f5df000ebe06fbd1872e4e39" target="_blank" rel="noopener">How to use Hexo and deploy to GitHub Pages</a></li>
+<li><a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">Community-maintained version of NexT theme</a></li>
+</ol>
+
           
         
       
