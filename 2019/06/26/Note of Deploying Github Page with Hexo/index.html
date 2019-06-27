@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="Yiran.K Coding World">
 <meta property="og:description" content="Step Install hexo 12$ npm install -g hexo-cli  $ hexo -v  Create hexo directory 1234$ hexo init yirank.github.io$ cd yirank.github.io`  $ npm install$ npm install hexo-deployer-git --save  Modify conf">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-27T07:14:38.833Z">
+<meta property="og:updated_time" content="2019-06-27T07:20:32.400Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Note of Deploying Github Page with Hexo">
 <meta name="twitter:description" content="Step Install hexo 12$ npm install -g hexo-cli  $ hexo -v  Create hexo directory 1234$ hexo init yirank.github.io$ cd yirank.github.io`  $ npm install$ npm install hexo-deployer-git --save  Modify conf">
@@ -361,7 +361,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-06-27 00:14:38" itemprop="dateModified" datetime="2019-06-27T00:14:38-07:00">2019-06-27</time>
+                <time title="Modified: 2019-06-27 00:20:32" itemprop="dateModified" datetime="2019-06-27T00:20:32-07:00">2019-06-27</time>
               
             
           </span>
@@ -403,17 +403,31 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init yirank.github.io</span><br><span class="line">$ cd yirank.github.io`  </span><br><span class="line">$ npm install</span><br><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Modify config</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vi _config.yml</span><br><span class="line">```  </span><br><span class="line">  ```yaml</span><br><span class="line">deploy:</span><br><span class="line">  repo: https://github.com/YiranK/yirank.github.io.git</span><br><span class="line">```  </span><br><span class="line">Notice: need to modify the local git user name and email, in order to avoid conflict with git in other directories:</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Modify <code>_config.yml</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ vi _config.yml</span><br><span class="line">~~~~~~~_config.yml~~~~~~~</span><br><span class="line">deploy:</span><br><span class="line">  repo: https://github.com/YiranK/yirank.github.io.git</span><br></pre></td></tr></table></figure>
 
 </li>
-</ol>
-<p>$ cd .deploy_git<br>$ git config user.name “yirank”<br>$ git config user.email “$email”<br>$ cd ..</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4. (Optional) Change theme</span><br><span class="line"> - Follow the guide on theme [NexT](https://github.com/theme-next/hexo-theme-next)</span><br><span class="line"> - Modify `_config.yml`:</span><br><span class="line"> ```yaml</span><br><span class="line"> theme: next</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Modify the <strong>theme configuration</strong> in <code>./theme/next/_config.yml</code></li>
 </ul>
-<ol start="5">
+</li>
+</ol>
+<p>Notice: Use https instead of ssh, in my case</p>
+<ul>
+<li>Modify the local git user name and email, in order to avoid conflict with git in other directories:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cd .deploy_git</span><br><span class="line">$ git config user.name &quot;yirank&quot;</span><br><span class="line">$ git config user.email &quot;$email&quot;</span><br><span class="line">$ cd ..</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<ol start="4">
+<li><p>(Optional) Change theme</p>
+<ul>
+<li><p>Follow the guide on theme <a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">NexT</a></p>
+</li>
+<li><p>Modify <code>_config.yml</code>:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Modify the <strong>theme configuration</strong> in <code>./theme/next/_config.yml</code></p>
+</li>
+</ul>
+</li>
 <li><p>Create new page and edit</p>
 <ul>
 <li><p>Create new page:</p>
