@@ -298,6 +298,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yirank.github.io/2019/08/06/314-Binary-Tree-Vertical-Order-Traversal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yiran.K">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yiran.K Coding World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/06/314-Binary-Tree-Vertical-Order-Traversal/" class="post-title-link" itemprop="url">314. Binary Tree Vertical Order Traversal</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-06 18:22:29 / Modified: 18:23:18" itemprop="dateCreated datePublished" datetime="2019-08-06T18:22:29-07:00">2019-08-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><blockquote>
+<p><a href="https://leetcode.com/problems/binary-tree-vertical-order-traversal/" target="_blank" rel="noopener">314. Binary Tree Vertical Order Traversal</a><br>Given a binary tree, return the  <em>vertical order</em>  traversal of its nodes’ values. (ie, from top to bottom, column by column).<br>If two nodes are in the same row and column, the order should be from  <strong>left to right</strong>.</p>
+</blockquote>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; verticalOrder(TreeNode* root) &#123;</span><br><span class="line">        <span class="comment">// Corner Case</span></span><br><span class="line">        <span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Use key-value pair to store lists of TreeNode value</span></span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; NodesByCol;</span><br><span class="line">        <span class="comment">// Dynamically update the range of col index</span></span><br><span class="line">        <span class="keyword">int</span> col_min = <span class="number">0</span>, col_max = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Queue of TreeNode* for BFS traverse and </span></span><br><span class="line">        <span class="comment">// Queeu of col index of corresponding TreeNode* </span></span><br><span class="line">        <span class="built_in">queue</span>&lt;TreeNode*&gt; nodes;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; cols;</span><br><span class="line">        nodes.push(root);</span><br><span class="line">        cols.push(<span class="number">0</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (!nodes.empty()) &#123;</span><br><span class="line">            <span class="comment">// Pop queue head and add it into map accordingly</span></span><br><span class="line">            TreeNode* cur = nodes.front();</span><br><span class="line">            nodes.pop();</span><br><span class="line">            <span class="keyword">int</span> col = cols.front();</span><br><span class="line">            cols.pop();</span><br><span class="line">            NodesByCol[col].push_back(cur-&gt;val);</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// BFS traverse its left child and right child</span></span><br><span class="line">            <span class="keyword">if</span> (cur-&gt;left) &#123;</span><br><span class="line">                nodes.push(cur-&gt;left);</span><br><span class="line">                <span class="comment">// Essence: just consider the col index relationship</span></span><br><span class="line">                <span class="comment">// between parent and its left child</span></span><br><span class="line">                cols.push(col<span class="number">-1</span>);</span><br><span class="line">                <span class="comment">// Dynamically update the col index range</span></span><br><span class="line">                col_min = min(col_min, col<span class="number">-1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (cur-&gt;right) &#123;</span><br><span class="line">                nodes.push(cur-&gt;right);</span><br><span class="line">                <span class="comment">// Essence: just consider the col index relationship</span></span><br><span class="line">                <span class="comment">// between parent and its right child</span></span><br><span class="line">                cols.push(col+<span class="number">1</span>);</span><br><span class="line">                col_max = max(col_max, col+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; result;</span><br><span class="line">        <span class="comment">// Rearrange lists of TreeNode value by col index</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = col_min; i &lt;= col_max; i++) &#123;</span><br><span class="line">            result.push_back(NodesByCol[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Take-away"><a href="#Take-away" class="headerlink" title="Take-away"></a>Take-away</h3><ol>
+<li>Consider the <code>col index</code> relationship between <strong>parent and its left child</strong>, between <strong>parent and its right child</strong>. No more math relationship. BFS traverse the tree also since <code>col index</code> has relationship between parent and children.</li>
+<li>Rearrange the order of lists of TreeNode value in the last and <strong>dynamically update the range of col index</strong>, rather than update the col index of each <code>TreeNode</code> dynamically. Although the <code>col index</code> is in sequence, use an <code>unordered_map</code> rather than append list one by one.</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yirank.github.io/2019/08/04/Leetcode-43-Multiply-Strings/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -343,7 +494,7 @@
                 
               
 
-              <time title="Created: 2019-08-04 16:43:28 / Modified: 16:43:51" itemprop="dateCreated datePublished" datetime="2019-08-04T16:43:28-07:00">2019-08-04</time>
+              <time title="Created: 2019-08-04 16:43:28 / Modified: 16:47:48" itemprop="dateCreated datePublished" datetime="2019-08-04T16:43:28-07:00">2019-08-04</time>
             
 
             
@@ -396,7 +547,7 @@
 <li>You  <strong>must not use any built-in BigInteger library</strong>  or  <strong>convert the inputs to integer</strong>  directly.</li>
 </ol>
 </blockquote>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">multiply</span><span class="params">(<span class="built_in">string</span> num1, <span class="built_in">string</span> num2)</span> </span>&#123;</span><br><span class="line">	    <span class="comment">// initialize the result sum string</span></span><br><span class="line">        <span class="function"><span class="built_in">string</span> <span class="title">sum</span><span class="params">(num1.length() + num2.length(), <span class="string">'0'</span>)</span></span>;</span><br><span class="line">        <span class="keyword">if</span> (sum.empty()) <span class="keyword">return</span> <span class="string">"0"</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// traverse from rightmost to leftmost since carry happens</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = num1.length() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = num2.length() - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">	            <span class="comment">// notice about the relationship between </span></span><br><span class="line">	            <span class="comment">// the bit position `i` and `j` and their multiplication </span></span><br><span class="line">	            <span class="comment">// result bit position `i + j` and `i + j + 1`</span></span><br><span class="line">                <span class="keyword">int</span> tmp_sum = (num1[i] - <span class="string">'0'</span>) * (num2[j] - <span class="string">'0'</span>) + (sum[i + j + <span class="number">1</span>] - <span class="string">'0'</span>);</span><br><span class="line">                sum[i + j + <span class="number">1</span>] = tmp_sum % <span class="number">10</span> + <span class="string">'0'</span>;</span><br><span class="line">                <span class="comment">// Not include + '0` for sum[i + j] since </span></span><br><span class="line">                <span class="comment">// here is `+=` and sum[i + j] is already a char </span></span><br><span class="line">                sum[i + j] += tmp_sum / <span class="number">10</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Use `while` here since `sum` could be `0000000...`</span></span><br><span class="line">        <span class="keyword">while</span> (sum.length() &gt; <span class="number">1</span> &amp;&amp; sum[<span class="number">0</span>] == <span class="string">'0'</span>) sum.erase(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">multiply</span><span class="params">(<span class="built_in">string</span> num1, <span class="built_in">string</span> num2)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// initialize the result sum string</span></span><br><span class="line">        <span class="function"><span class="built_in">string</span> <span class="title">sum</span><span class="params">(num1.length() + num2.length(), <span class="string">'0'</span>)</span></span>;</span><br><span class="line">        <span class="keyword">if</span> (sum.empty()) <span class="keyword">return</span> <span class="string">"0"</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// traverse from rightmost to leftmost since carry happens</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = num1.length() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = num2.length() - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">                <span class="comment">// notice about the relationship between </span></span><br><span class="line">                <span class="comment">// the bit position `i` and `j` and their multiplication</span></span><br><span class="line">                <span class="comment">// result bit position `i + j` and `i + j + 1`</span></span><br><span class="line">                <span class="keyword">int</span> tmp_sum = (num1[i] - <span class="string">'0'</span>) * (num2[j] - <span class="string">'0'</span>) + (sum[i + j + <span class="number">1</span>] - <span class="string">'0'</span>);</span><br><span class="line">                sum[i + j + <span class="number">1</span>] = tmp_sum % <span class="number">10</span> + <span class="string">'0'</span>;</span><br><span class="line">                <span class="comment">// Not include + '0` for sum[i + j] since </span></span><br><span class="line">                <span class="comment">// here is `+=` and sum[i + j] is already a char </span></span><br><span class="line">                sum[i + j] += tmp_sum / <span class="number">10</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Use `while` here since `sum` could be `0000000...`</span></span><br><span class="line">        <span class="keyword">while</span> (sum.length() &gt; <span class="number">1</span> &amp;&amp; sum[<span class="number">0</span>] == <span class="string">'0'</span>) sum.erase(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <h3 id="Take-Away"><a href="#Take-Away" class="headerlink" title="Take Away"></a>Take Away</h3><ol>
 <li><code>num1[i] * num2[j]</code> will be placed at indices <code>[i + j</code>, <code>i + j + 1]</code></li>
@@ -845,7 +996,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
