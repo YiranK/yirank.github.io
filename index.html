@@ -298,6 +298,315 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yirank.github.io/2019/08/08/814-Binary-Tree-Pruning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yiran.K">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yiran.K Coding World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/08/814-Binary-Tree-Pruning/" class="post-title-link" itemprop="url">Path Length vs. Path Sum814. Binary Tree Pruning</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-08 19:35:03 / Modified: 19:35:42" itemprop="dateCreated datePublished" datetime="2019-08-08T19:35:03-07:00">2019-08-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><blockquote>
+<p>We are given the head node  <code>root</code> of a binary tree, where additionally every node’s value is either a 0 or a 1.<br>Return the same tree where every subtree (of the given tree) not containing a 1 has been removed.<br>(Recall that the subtree of a node X is X, plus every node that is a descendant of X.)</p>
+</blockquote>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">pruneTree</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// When it come to `remove` nodes in tree, it means</span></span><br><span class="line">        <span class="comment">// we need re-link left TreeNode pointer and right TreeNode pointer</span></span><br><span class="line">        <span class="comment">// to the return value of we calling `pruneTree` function</span></span><br><span class="line">        root-&gt;left = pruneTree(root-&gt;left);</span><br><span class="line">        root-&gt;right = pruneTree(root-&gt;right);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// As long as there is one subtree of current root containing 1, it can be retained</span></span><br><span class="line">        <span class="comment">// Otherwise, current root need to be removed, which means return NULL</span></span><br><span class="line">        <span class="comment">// so its parent can't link it</span></span><br><span class="line">        <span class="comment">// Recall the subtree of a node X is left descendant, right descendant and X itself</span></span><br><span class="line">        <span class="comment">// just check whether they contain 1 one by one</span></span><br><span class="line">        <span class="comment">// where `root-&gt;left` not NULL means left subtree contains 1</span></span><br><span class="line">        <span class="keyword">if</span> (root-&gt;left || root-&gt;right || root-&gt;val == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Take-away"><a href="#Take-away" class="headerlink" title="Take-away"></a>Take-away</h3><ol>
+<li>Re-link the TreeNode pointer in the mean time call the recursion function</li>
+<li>Exploit the return value <code>NULL</code> as <code>TreeNode*</code> on some condition</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yirank.github.io/2019/08/08/Path-Length-vs-Path-Sum-in-Binary-Tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yiran.K">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yiran.K Coding World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/08/Path-Length-vs-Path-Sum-in-Binary-Tree/" class="post-title-link" itemprop="url">Path Length vs. Path Sum in Binary Tree</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-08 19:34:38 / Modified: 19:36:03" itemprop="dateCreated datePublished" datetime="2019-08-08T19:34:38-07:00">2019-08-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="543-Diameter-of-Binary-Tree"><a href="#543-Diameter-of-Binary-Tree" class="headerlink" title="543. Diameter of Binary Tree"></a>543. Diameter of Binary Tree</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><blockquote>
+<p>Given a binary tree, you need to compute the length of the diameter of the tree. The diameter of a binary tree is the length of the <strong>longest</strong> path between any two nodes in a tree. This path may or may not pass through the root.</p>
+</blockquote>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// Need a variable outside `diameterOfBinaryTree` to record the longest path</span></span><br><span class="line">    <span class="keyword">int</span> diameter = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Need an extra recursion function to DFS and update `diameter` dynamically</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestToLeaf</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// Get longest path from current node to leaf on left</span></span><br><span class="line">        <span class="keyword">int</span> longestLeft = longestToLeaf(root-&gt;left);</span><br><span class="line">        <span class="comment">// Get longest path from current node to leaf on right</span></span><br><span class="line">        <span class="keyword">int</span> longestRight = longestToLeaf(root-&gt;right);</span><br><span class="line">        <span class="comment">// Update `diameter` dynamically</span></span><br><span class="line">        diameter = max(longestLeft + longestRight, diameter);</span><br><span class="line">        <span class="comment">// Return value is different from `diameter`</span></span><br><span class="line">        <span class="comment">// Return value is the longest path from current node to leaf</span></span><br><span class="line">        <span class="comment">// No matter on left or on right</span></span><br><span class="line">        <span class="keyword">return</span> max(longestLeft, longestRight) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">diameterOfBinaryTree</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        longestToLeaf(root);</span><br><span class="line">        <span class="keyword">return</span> diameter;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Take-away"><a href="#Take-away" class="headerlink" title="Take-away"></a>Take-away</h3><ol>
+<li><strong>The path between any two nodes can be regarded as the sum of <code>the path of middle node to left leaf</code> and <code>the path of middle node to right leaf</code></strong>. So to find the longest path, we need to visit each node and treat it as middle node, get the sum of <code>its longest path to left leaf</code> and <code>its longest path to right leaf</code>, and update the longest path dynamically.</li>
+<li>For each node we have visited, we just care about its <code>longest path to leaf</code>, no matter it is left leaf or right leaf, so when we call the recursion function we just need it to return the maximum of its left longest path and its right longest path.</li>
+<li>To calculate about the current node, we need exploit the power of its left child and right child, which is to say, <strong>there’s some relation between <code>longest path to leaf</code> of current node, and the corresponding field(<code>longest path to leaf</code>) of its children</strong>, that’s why we need DFS and recursion.</li>
+</ol>
+<h2 id="124-Binary-Tree-Maximum-Path-Sum"><a href="#124-Binary-Tree-Maximum-Path-Sum" class="headerlink" title="124. Binary Tree Maximum Path Sum"></a>124. Binary Tree Maximum Path Sum</h2><h3 id="Description-1"><a href="#Description-1" class="headerlink" title="Description"></a>Description</h3><blockquote>
+<p>Given a  <strong>non-empty</strong>  binary tree, find the maximum path sum.<br>For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The path must contain  <strong>at least one node</strong>  and does not need to go through the root.</p>
+</blockquote>
+<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;limits.h&gt;</span></span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> max_path_sum = INT_MIN;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dfsPathSum</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// Another way is to set 0 threshold here:</span></span><br><span class="line">        <span class="comment">// int left_max = max(dfsPathSum(root-&gt;left), 0);</span></span><br><span class="line">        <span class="comment">// int right_max = max(dfsPathSum(root-&gt;right), 0);</span></span><br><span class="line">        <span class="keyword">int</span> left_max = dfsPathSum(root-&gt;left);</span><br><span class="line">        <span class="keyword">int</span> right_max = dfsPathSum(root-&gt;right);</span><br><span class="line">        max_path_sum = max(max_path_sum, left_max + right_max + root-&gt;val);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Set 0 threshold here since negative value is no beneficial for path sum of its parent</span></span><br><span class="line">        <span class="keyword">return</span> max(max(max(left_max + root-&gt;val, right_max + root-&gt;val), root-&gt;val),<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxPathSum</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        dfsPathSum(root);</span><br><span class="line">        <span class="keyword">return</span> max_path_sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Take-away-1"><a href="#Take-away-1" class="headerlink" title="Take-away"></a>Take-away</h3><p>The biggest difference here is, the <strong>path length always grows</strong> when we visit from bottom to top in DFS, while the <strong>path sum does not</strong>! The <strong>negative value reduces the path sum</strong> so we need to set 0 threshold to filter out the negative value.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yirank.github.io/2019/08/06/314-Binary-Tree-Vertical-Order-Traversal/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -996,7 +1305,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

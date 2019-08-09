@@ -94,17 +94,17 @@
 
 
 
-  <meta name="description" content="Description Given two non-negative integers  num1  and  num2  represented as strings, return the product of  num1  and  num2, also represented as a string. Example 1:Input: num1 = “2”, num2 = “3”Outpu">
+  <meta name="description" content="Description We are given the head node  root of a binary tree, where additionally every node’s value is either a 0 or a 1.Return the same tree where every subtree (of the given tree) not containing a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode 43. Multiply Strings">
-<meta property="og:url" content="http://yirank.github.io/2019/08/04/Leetcode-43-Multiply-Strings/index.html">
+<meta property="og:title" content="Path Length vs. Path Sum814. Binary Tree Pruning">
+<meta property="og:url" content="http://yirank.github.io/2019/08/08/814-Binary-Tree-Pruning/index.html">
 <meta property="og:site_name" content="Yiran.K Coding World">
-<meta property="og:description" content="Description Given two non-negative integers  num1  and  num2  represented as strings, return the product of  num1  and  num2, also represented as a string. Example 1:Input: num1 = “2”, num2 = “3”Outpu">
+<meta property="og:description" content="Description We are given the head node  root of a binary tree, where additionally every node’s value is either a 0 or a 1.Return the same tree where every subtree (of the given tree) not containing a">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-04T23:47:48.727Z">
+<meta property="og:updated_time" content="2019-08-09T02:35:42.894Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode 43. Multiply Strings">
-<meta name="twitter:description" content="Description Given two non-negative integers  num1  and  num2  represented as strings, return the product of  num1  and  num2, also represented as a string. Example 1:Input: num1 = “2”, num2 = “3”Outpu">
+<meta name="twitter:title" content="Path Length vs. Path Sum814. Binary Tree Pruning">
+<meta name="twitter:description" content="Description We are given the head node  root of a binary tree, where additionally every node’s value is either a 0 or a 1.Return the same tree where every subtree (of the given tree) not containing a">
 
 
 
@@ -112,7 +112,7 @@
 
   
   
-  <link rel="canonical" href="http://yirank.github.io/2019/08/04/Leetcode-43-Multiply-Strings/">
+  <link rel="canonical" href="http://yirank.github.io/2019/08/08/814-Binary-Tree-Pruning/">
 
 
 
@@ -122,7 +122,7 @@
   };
 </script>
 
-  <title>Leetcode 43. Multiply Strings | Yiran.K Coding World</title>
+  <title>Path Length vs. Path Sum814. Binary Tree Pruning | Yiran.K Coding World</title>
   
 
 
@@ -301,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yirank.github.io/2019/08/04/Leetcode-43-Multiply-Strings/">
+    <link itemprop="mainEntityOfPage" href="http://yirank.github.io/2019/08/08/814-Binary-Tree-Pruning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yiran.K">
@@ -318,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Leetcode 43. Multiply Strings
+          <h1 class="post-title" itemprop="name headline">Path Length vs. Path Sum814. Binary Tree Pruning
 
               
             
@@ -344,7 +344,7 @@
                 
               
 
-              <time title="Created: 2019-08-04 16:43:28 / Modified: 16:47:48" itemprop="dateCreated datePublished" datetime="2019-08-04T16:43:28-07:00">2019-08-04</time>
+              <time title="Created: 2019-08-08 19:35:03 / Modified: 19:35:42" itemprop="dateCreated datePublished" datetime="2019-08-08T19:35:03-07:00">2019-08-08</time>
             
 
             
@@ -384,22 +384,13 @@
 
       
         <h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><blockquote>
-<p>Given two non-negative integers  <code>num1</code>  and  <code>num2</code>  represented as strings, return the product of  <code>num1</code>  and  <code>num2</code>, also represented as a string.</p>
-<p><strong>Example 1:</strong><br><strong>Input:</strong> num1 = “2”, num2 = “3”<br><strong>Output:</strong> “6”</p>
-<p><strong>Example 2:</strong><br><strong>Input:</strong> num1 = “123”, num2 = “456”<br><strong>Output:</strong> “56088”</p>
-<p><strong>Note:</strong></p>
-<ol>
-<li>The length of both  <code>num1</code>  and  <code>num2</code>  is &lt; 110.</li>
-<li>Both  <code>num1</code>  and  <code>num2</code>  contain only digits  <code>0-9</code>.</li>
-<li>Both  <code>num1</code>  and  <code>num2</code> do not contain any leading zero, except the number 0 itself.</li>
-<li>You  <strong>must not use any built-in BigInteger library</strong>  or  <strong>convert the inputs to integer</strong>  directly.</li>
-</ol>
+<p>We are given the head node  <code>root</code> of a binary tree, where additionally every node’s value is either a 0 or a 1.<br>Return the same tree where every subtree (of the given tree) not containing a 1 has been removed.<br>(Recall that the subtree of a node X is X, plus every node that is a descendant of X.)</p>
 </blockquote>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">multiply</span><span class="params">(<span class="built_in">string</span> num1, <span class="built_in">string</span> num2)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// initialize the result sum string</span></span><br><span class="line">        <span class="function"><span class="built_in">string</span> <span class="title">sum</span><span class="params">(num1.length() + num2.length(), <span class="string">'0'</span>)</span></span>;</span><br><span class="line">        <span class="keyword">if</span> (sum.empty()) <span class="keyword">return</span> <span class="string">"0"</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// traverse from rightmost to leftmost since carry happens</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = num1.length() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = num2.length() - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">                <span class="comment">// notice about the relationship between </span></span><br><span class="line">                <span class="comment">// the bit position `i` and `j` and their multiplication</span></span><br><span class="line">                <span class="comment">// result bit position `i + j` and `i + j + 1`</span></span><br><span class="line">                <span class="keyword">int</span> tmp_sum = (num1[i] - <span class="string">'0'</span>) * (num2[j] - <span class="string">'0'</span>) + (sum[i + j + <span class="number">1</span>] - <span class="string">'0'</span>);</span><br><span class="line">                sum[i + j + <span class="number">1</span>] = tmp_sum % <span class="number">10</span> + <span class="string">'0'</span>;</span><br><span class="line">                <span class="comment">// Not include + '0` for sum[i + j] since </span></span><br><span class="line">                <span class="comment">// here is `+=` and sum[i + j] is already a char </span></span><br><span class="line">                sum[i + j] += tmp_sum / <span class="number">10</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Use `while` here since `sum` could be `0000000...`</span></span><br><span class="line">        <span class="keyword">while</span> (sum.length() &gt; <span class="number">1</span> &amp;&amp; sum[<span class="number">0</span>] == <span class="string">'0'</span>) sum.erase(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">pruneTree</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// When it come to `remove` nodes in tree, it means</span></span><br><span class="line">        <span class="comment">// we need re-link left TreeNode pointer and right TreeNode pointer</span></span><br><span class="line">        <span class="comment">// to the return value of we calling `pruneTree` function</span></span><br><span class="line">        root-&gt;left = pruneTree(root-&gt;left);</span><br><span class="line">        root-&gt;right = pruneTree(root-&gt;right);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// As long as there is one subtree of current root containing 1, it can be retained</span></span><br><span class="line">        <span class="comment">// Otherwise, current root need to be removed, which means return NULL</span></span><br><span class="line">        <span class="comment">// so its parent can't link it</span></span><br><span class="line">        <span class="comment">// Recall the subtree of a node X is left descendant, right descendant and X itself</span></span><br><span class="line">        <span class="comment">// just check whether they contain 1 one by one</span></span><br><span class="line">        <span class="comment">// where `root-&gt;left` not NULL means left subtree contains 1</span></span><br><span class="line">        <span class="keyword">if</span> (root-&gt;left || root-&gt;right || root-&gt;val == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<h3 id="Take-Away"><a href="#Take-Away" class="headerlink" title="Take Away"></a>Take Away</h3><ol>
-<li><code>num1[i] * num2[j]</code> will be placed at indices <code>[i + j</code>, <code>i + j + 1]</code></li>
-<li>Traverse from rightmost to leftmost since carry happens. Carry also happens when we calculate about <code>sum[i + j]</code> and <code>sum[i + j + 1]</code>, that’s why <code>sum[i + j + 1]</code> is <code>=</code> while <code>sum[i + j]</code> is <code>+=</code></li>
+<h3 id="Take-away"><a href="#Take-away" class="headerlink" title="Take-away"></a>Take-away</h3><ol>
+<li>Re-link the TreeNode pointer in the mean time call the recursion function</li>
+<li>Exploit the return value <code>NULL</code> as <code>TreeNode*</code> on some condition</li>
 </ol>
 
       
@@ -431,8 +422,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/26/Note of Deploying Github Page with Hexo/" rel="next" title="Note of Deploying Github Page with Hexo">
-                <i class="fa fa-chevron-left"></i> Note of Deploying Github Page with Hexo
+              <a href="/2019/08/08/Path-Length-vs-Path-Sum-in-Binary-Tree/" rel="next" title="Path Length vs. Path Sum in Binary Tree">
+                <i class="fa fa-chevron-left"></i> Path Length vs. Path Sum in Binary Tree
               </a>
             
           </div>
@@ -440,10 +431,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/06/314-Binary-Tree-Vertical-Order-Traversal/" rel="prev" title="314. Binary Tree Vertical Order Traversal">
-                314. Binary Tree Vertical Order Traversal <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -556,7 +543,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Take-Away"><span class="nav-number">3.</span> <span class="nav-text">Take Away</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Take-away"><span class="nav-number">3.</span> <span class="nav-text">Take-away</span></a></li></ol></div>
             
 
           </div>
